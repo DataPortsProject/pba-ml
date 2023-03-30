@@ -1,0 +1,3 @@
+from gym_threshold_begone.envs.bpm2020_env import BPM2020Env
+from gym_threshold_begone.envs.bpm2020_env_fixed_processlength import BPM2020EnvFixedProcesslength
+from gym_threshold_begone.envs.non_prophetic_curiosity import NonPropheticCuriosity

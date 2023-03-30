@@ -1,0 +1,18 @@
+# start the server with ssl encryption using the self-signed certificate and private-key (don't mind the insecure flag)
+python manage.py runserver_plus --cert-file server.crt --key-file server.key --insecure 0.0.0.0:8000
+# create a superuser that can administer the server
+python manage.py createsuperuser --email email --username username
+# cURL the API, "-k" to accept self-signed certificate, url needs to include trailing slash, "-u" to basic authenticate "user:password", "-vvv" for maximum verbosity
+curl -k https://localhost:8000/datasets/ -u "user:password"
+# prepare database migration after changing the model classes
+python manage.py makemigrations
+# apply migrations
+python manage.py migrate
+# populate the database with test data, if it doesn't already exist
+python manage.py create_test_data
+# delete all test data from the database
+python manage.py delete_test_data
+# create databasetables for the first time
+python manage.py migrate --run-syncdb
+# import PCS data
+python manage.py pcs_data_file_import
